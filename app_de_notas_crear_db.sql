@@ -52,44 +52,53 @@ CREATE OR REPLACE TABLE notas(
 	constraint categoria_id_fk foreign key(id_categoria) references categorias(id)
 );
 
+CREATE OR REPLACE TABLE registro(
+id INT NOT NULL AUTO_INCREMENT,
+id_nota INT,
+gestion enum('creacion','modificacion','eliminacion') NOT NULL,
+fecha_de_gestion timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+key registro_id_nota (id_nota),
+constraint registro_id_nota foreign key (id_nota) references notas(id)
+)
+
 INSERT INTO usuarios
-VALUES (1,
+VALUES(12,
   'Marcos',
   'Villanueva',
   'marcvillanueva2311@gmail.com'
-),(2,
+),(23,
 'Agus',
 'Trossero',
 'agustrossero@gmail.com'
-),(3,
+),(34,
 'Juan',
 'Larraz',
 'juanlarraz@gmail.com'
-),(4,
+),(45,
 'Ignacio',
 'Maldonado',
 'ignaciomaldonado@gmail.com'
-),(5,
+),(56,
 'Lucas',
 'Sequeira',
 'lucassequeira@gmail.com'
-),(6,
+),(67,
 'Julian',
 'Hernandez',
 'julihernandez@gmail.com'
-),(7,
+),(78,
 'Mauri',
 'Hunau',
 'maurihunau@gmail.com'
-),(8,
+),(89,
 'Gaston',
 'Elthe',
 'gastonelthe@gmail.com'
-),(9,
+),(910,
 'Luciano',
 'Saeta',
 'luchosaeta@gmail.com'
-),(10,
+),(101,
 'Maria',
 'Gianera',
 'mariagianera@gmail.com'
@@ -191,6 +200,37 @@ VALUES(1,
 'Lorem ipsum dolor sit amet',
 0,
 10);
+
+
+INSERT INTO gestiones(id_nota, gestion, fecha_de_gestion )
+VALUES (11,
+'eliminacion',
+ '2020-04-20 04:54:40'),    
+(32,
+'creacion',
+ '2019-05-13 14:50:11'),
+(43,
+'eliminacion'
+, '2019-12-06 06:52:25'),
+(54,
+'eliminacion',
+ '2019-08-11 18:43:59'),
+(65,
+'modificacion',
+ '2020-01-25 07:22:05'),
+(76,
+'modificacion',
+ '2019-07-06 00:08:08'),
+(87,
+'creacion',
+ '2019-09-21 11:44:17'),
+(98,
+'creacion',
+ '2019-11-05 10:42:02'),
+(109,
+'modificacion',
+ '2019-06-01 22:06:23');
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
